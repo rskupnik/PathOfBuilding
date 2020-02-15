@@ -1751,6 +1751,11 @@ local specialModList = {
 		mod("EnemyPhysicalDamageReduction", "BASE", -num)
 	} end,
 	["enemies on fungal ground you kill explode, dealing 5%% of their life as chaos damage"] = {},
+	["nearby enemies have fire, cold and lightning exposure while you have phasing, applying %-15%% to those resistances"] = {
+		mod("EnemyModifier", "LIST", { mod = mod("ColdResist", "BASE", -15) }),
+		mod("EnemyModifier", "LIST", { mod = mod("FireResist", "BASE", -15) }),
+		mod("EnemyModifier", "LIST", { mod = mod("LightningResist", "BASE", -15) })
+	},
 	["you have fungal ground around you while stationary"] = {},
 	["%(allies on your fungal ground gain ([%d%.]+)%% of non%-chaos damage as extra chaos damage%. enemies on your fungal ground deal ([%d%.]+)%% less damage%.%)"] = function(_, gain, enemyLoss) return {
 		mod("NonChaosDamageGainAsChaos", "BASE", gain, { type = "Condition", var = "OnFungalGround" }, { type = "GlobalEffect", effectType = "Aura" }),
